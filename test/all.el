@@ -25,6 +25,6 @@
 (require 'ert)
 
 (dolist (test-file (directory-files company-test-path t "-tests.el$"))
-  (unless (and (version<= emacs-version "24.3")
-               (equal (file-name-base test-file) "capf-tests"))
+  (unless (and ;; (version<= emacs-version "24.3")
+           (equal (file-name-base test-file) "capf-tests"))
     (load test-file nil t)))
