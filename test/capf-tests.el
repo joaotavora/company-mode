@@ -63,15 +63,9 @@
 ;; Author: Stefan Monnier <monnier@iro.umontreal.ca>
 ;; Date:   Tue Nov 7 12:17:34 2017 -0500
 
-(defmacro company--ert-skip-unless (condition)
-  "Emacs 24.3 doesn't have skip-unless"
-  (if (fboundp 'ert-skip)
-      `(skip-unless ,condition)
-    `(unless ,condition (ert-pass))))
-
 (ert-deftest company-non-prefix-fancy-capf-highlighting ()
   "Test highlighting for non-prefix `company-capf' in elisp"
-  (company--ert-skip-unless (version<= "27.0" emacs-version))
+  (skip-unless (version<= "27.0" emacs-version))
   (company-capf-with-buffer
     "(w-c-b|)"
     (company-mode)
@@ -97,7 +91,7 @@
 
 (ert-deftest company-non-prefix-modest-capf-highlighting ()
   "Test highlighting for non-prefix `company-capf' in elisp"
-  (company--ert-skip-unless (version< emacs-version "27.0"))
+  (skip-unless (version< emacs-version "27.0"))
   (company-capf-with-buffer
     "(w-c-b|)"
     (company-mode)
